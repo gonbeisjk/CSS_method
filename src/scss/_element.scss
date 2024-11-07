@@ -1,0 +1,229 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+// =======================================================
+// カード
+.e_card {
+  display: block;
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 3px;
+  @include desktop {
+    border-radius: 6px;
+  }
+  &__link {
+    display: block;
+    text-decoration: none;
+    @include ov_zoomimg;
+    &:hover {
+      .e_card__title {
+        color: #9b875a;
+      }
+    }
+  }
+  &__thumb {
+    height: 33.3vw;//高さをスクリーン幅に合わせて可変
+    overflow: hidden;
+    display: block;
+    @include desktop {
+      height: 180px;
+    }
+    img {
+      width: auto;
+      height: 100%;
+      object-fit: cover;
+      
+      @include desktop {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 80px;
+    padding: 6px 10px 14px;
+    @include desktop {
+      padding: 10px 16px 14px;
+    }
+  }
+  &__title {
+    @include fz(12);
+    transition: color 0.2s;//文字色変更は __link部分に記載あり
+    @include desktop {
+      @include fz(16);
+    }
+  }
+  &__price {
+    line-height: 1;
+    color: #9b875a;
+    text-align: right;
+    @include fz(14);
+    @include desktop {
+      @include fz(16);
+    }
+  }
+}
+
+// =======================================================
+// ボタン
+a,
+button,
+input {
+  &.e_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 52px;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    height: 50px;
+    transition: 0.3s ease-in-out;
+    border-radius: 24px;
+    @include fz(16);
+
+    @include desktop {
+      padding: 0 70px;
+    }
+
+    & + & {
+      margin-left: 10px;
+    }
+
+    // 色
+    &._white {
+      color: #000;
+      background: #fff;
+      border: 2px solid #000;
+      &:hover {
+        color: #fff;
+        background: #000;
+      }
+    }
+    &._brown {
+      background-color: $color_primary;
+      color: #fff;
+      border: 2px solid $color_primary;
+      &:hover {
+        color: $color_primary;
+        background: #fff;
+      }
+    }
+
+    
+
+    // =======================================================
+    // ここから下は使ってない
+    // 横幅
+    &._w235 {
+      width: 235px;
+      a,
+      button,
+      input {
+        width: 100%;
+      }
+    }
+    &._w460 {
+      width: 100%;
+      @include desktop {
+        width: 460px;
+      }
+      a,
+      button,
+      input {
+        width: 100%;
+      }
+    }
+
+    // 縦幅
+    &._h45 {
+      a,
+      button,
+      input {
+        height: 45px;
+        border-radius: 45px;
+        @include desktop {
+          letter-spacing: 0.18em;
+        }
+      }
+    }
+
+    
+  }
+}
+
+// .e_btn {
+//   & + & {
+//     margin-left: 10px;
+//   }
+// }
+
+/* stylelint-disable */
+//色
+// a,
+// button,
+// input {
+//   // .e_btn &,
+//   &.e_btn {
+    
+//   }
+// }
+
+// //横幅
+// .e_btn {
+  
+// }
+
+// //縦幅
+// .e_btn {
+  
+// }
+
+//囲み 右寄せ 中央寄せ 左寄せ
+.e_btnGroup {
+  display: flex;
+  &._left {
+    justify-content: flex-start;
+  }
+  &._center {
+    justify-content: center;
+  }
+  &._right {
+    justify-content: flex-end;
+  }
+
+  &__note {
+    @include fz(12);
+  }
+}
+
+
+
+// =======================================================
+// フォーム
+.e_input {
+  width: 100%;
+  input[type="text"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="date"],
+  input[type="time"],
+  input[type="password"],
+  input[type="email"] {
+    padding: 5px;
+    border: 1px solid #000;
+    border-radius: 0;
+    &::placeholder {
+      color: #ccc;
+    }
+  }
+}
+.e_textarea {
+  textarea {
+    width: 100%;
+    min-height: 80px;
+  }
+}

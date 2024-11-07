@@ -1,0 +1,530 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+// =======================================================
+// キービジュアル
+.c_kv {
+  position: relative;
+  overflow: hidden;
+  background-color: #ded6c5;
+  aspect-ratio: 3 / 4;
+  // height: 80vh;
+  @include desktop {
+    aspect-ratio: initial;
+    height: 360px;
+  }
+  &__inner {
+    z-index: 10;
+    width: 100%;
+    // height: 100%;
+    overflow: visible;
+    @include desktop {
+      max-width: 1024px;
+      height: 360px;
+      margin: 0 auto;
+    }
+  }
+
+  // Swiper設定
+  .swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+  .swiper-slide {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: inherit;
+    margin: 0;
+    @include desktop {
+      min-width: inherit;
+    }
+    picture {
+      display: block;//グローバルナビゲーションを開いたときにSwiperに幅換算をさせるために必ずblockにする。さもないとSwiperは幅を計算できない
+      width: 100%;
+      height: 100%;
+    }
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  
+  .swiper-pagination {
+    bottom: 18px;
+  }
+  .swiper-button-white {
+    width: 50px;
+    height: 50px;
+    background: #000;
+  }
+  .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    opacity: 1;
+    &.swiper-pagination-bullet-active {
+      background-color: #9b875a;
+    }
+  }
+}
+
+// =======================================================
+// セクション
+.c_section {
+  &__header {
+    position: relative;
+    padding-top: 20px;
+    padding-bottom: 28px;
+    @include desktop {
+      padding-bottom: 38px;
+      margin-bottom: 50px;
+    }
+    &::before {
+      @include desktop {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        display: block;
+        width: 60px;
+        height: 2px;
+        content: "";
+        background-color: #9b875a;
+        transform: translateX(-50%);
+      }
+    }
+    &Title {
+      text-transform: uppercase;
+      @include fz(16);
+      @include font-webfont_Lato;
+      text-align: center;
+      @include desktop {
+        @include fz(30);
+      }
+    }
+  }
+}
+
+// =======================================================
+// カードコンテナ
+.c_cards {
+  display: flex;
+  flex-wrap: wrap;
+  @include touch {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+  @include desktop {
+    max-width: 1000px;
+    margin-top: inherit;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  &__item {
+    width: 32%;
+    margin-top: 2%;
+    margin-left: 2%;
+    
+    @include desktop {
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+  }
+  &__item:nth-child(-n + 3) {
+    margin-top: 0;
+  }
+  &__item:nth-child(3n + 1) {
+    margin-left: 0;
+    @include desktop {
+      margin-left: 0;
+    }
+  }
+}
+
+// =======================================================
+// 商品詳細
+.c_detail {
+  @include touch {
+    background: #fff;
+  }
+  &__inner {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-direction: column;
+    @include desktop {
+      flex-direction: row;
+      padding-bottom: 80px;
+    }
+  }
+  &__main {
+    position: relative;
+    width: 100%;
+    height: auto;
+    @include desktop {
+      max-width: 600px;
+      // height: 700px;
+      margin-top: -20px;
+    }
+  }
+
+  // メインスライド
+  &__slide {
+    // Swiper設定
+    .swiper-slide {
+      @include desktop {
+        height: 600px;
+      }
+      img {
+        @include object-fit;
+        max-width: inherit;
+        width: 100%;
+        height: auto;
+
+      }
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+      width: 50px;
+      height: 50px;
+      @include ov;
+      &::after {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 50px;
+        background-image: url(../img/common/arrow.png);
+        background-size: 100% auto;
+      }
+    }
+    .swiper-button-prev {
+      transform: rotate(180deg);
+    }
+    
+  }
+
+  // サムネイル
+  &__thumbs {
+    display: none;
+    @include desktop {
+      display: block;
+      max-height: 100px;
+      overflow: hidden;
+      width: 100%;
+      margin-top: 20px;
+      // position: absolute;
+      // z-index: 10;
+      // bottom: 0;
+      // max-width: 550px;
+      // left: calc(100% + 60px);
+    }
+    //Swiper設定
+    .swiper-slide {
+      width: 100px;
+      height: inherit;
+      margin-left: 10px;
+      &.swiper-slide-thumb-active {
+        &::before {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 100%;
+          border: 2px solid $color_primary;
+          position: absolute;
+          pointer-events: none;
+          z-index: 5;
+        }
+      }
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+      img {
+        width: 100px;
+        height: auto;
+      }
+    }
+  }
+
+  &__contents {
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+    margin: 0 20px;
+    @include desktop {
+      padding-bottom: 70px;
+      padding-left: 5%;
+      margin: 0 30px;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    @include mobile {
+      width: 100%;
+    }
+    @include desktop {
+      margin-top: 30px;
+    }
+    
+  }
+  &__title {
+    font-weight: bold;
+    margin-top: 30px;
+    @include fz(20);
+    line-height: 1.3;
+    @include desktop {
+      @include fz(36);
+      order: 2;
+      margin-top: 10px;
+    }
+  }
+
+  &__sub {
+    @include fz(14);
+    margin-top: 10px;
+    color: #9b875a;
+    @include desktop {
+      @include fz(18);
+      margin-top: inherit;
+      order: 1;
+    }
+  }
+  
+  &__price {
+    margin-top: 30px;
+    font-weight: bold;
+    @include fz(20);
+    text-align: end;
+    @include desktop {
+      // text-align: inherit;
+      @include fz(32);
+      margin-top: 50px;
+      order: 3;
+    }
+  }
+
+  &__lead {
+    @include fz(16);
+    line-height: 1.75;
+    margin-top: 20px;
+    @include mobile {
+      @include fz(12);
+    }
+    @include desktop {
+      margin: 60px 0 30px;
+      order: 5;
+    }
+  }
+
+  &__btn {
+    margin-top: 24px;
+    max-width: 314px;
+    @include desktop {
+      order: 4;
+    }
+    .e_btn {
+      width: 100%;
+    }
+  }
+}
+
+// =======================================================
+// カート
+.c_cart {
+  padding-top: 25px;
+  &__inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  &__item {
+    background: #fff;
+    & + & {
+      margin-top: 6px;
+    }
+    &Link {
+      display: flex;
+      padding: 20px;
+      text-decoration: none;
+    }
+    &Thumb {
+      width: 90px;
+      height: 90px;
+      overflow: hidden;
+      img {
+        object-fit: cover;
+        width: auto;
+        max-width: inherit;
+        height: 100%;
+      }
+    }
+    &Body {
+      display: flex;
+      flex: auto;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-left: 20px;
+    }
+    &Title {
+      margin-top: -4px;
+    }
+    &Price {
+      @include fz(18);
+      font-weight: bold;
+      text-align: end;
+    }
+  }
+  &__price {
+    margin: 20px 20px 0;
+    @include desktop {
+      margin: 30px 0 0;
+    }
+    &Item {
+      font-weight: bold;
+      line-height: 1;
+      text-align: end;
+      @include fz(30);
+      & + & {
+        margin-top: 16px;
+        @include desktop {
+          margin-top: 20px;
+        }
+      }
+    }
+    &Text {
+      @include fz(16);
+      margin-right: 10px;
+      font-weight: normal;
+    }
+  }
+}
+
+
+// =======================================================
+// ログイン
+.c_memberLogin {
+  padding-top: 40px;
+  @include desktop {
+    padding-top: 80px;
+  }
+}
+
+
+// =======================================================
+// フォーム
+.c_form {
+  margin: 12px 15px 0;
+  @include desktop {
+    width: 400px;
+    margin: 60px auto 0;
+  }
+  &__group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    & + & {
+      margin-top: 34px;
+    }
+  }
+  &__label {
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  input[type="text"],
+  input[type="password"] {
+    padding: 12px 5px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 0;
+    &::placeholder {
+      color: #666;
+    }
+  }
+  .e_btnGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    &__note {
+      margin-top: 20px;
+    }
+  }
+}
+
+
+// =======================================================
+// ポイント
+.c_point {
+  @include desktop {
+    background-color: #fff;
+  }
+  &__inner {
+    @include desktop {
+      max-width: 1000px;
+      padding-top: 45px;
+      padding-bottom: 50px;
+      margin: 0 auto;
+    }
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 25px;
+    background: $color_bg;
+    @include desktop {
+      padding: 36px 25px;
+      margin-top: 40px;
+      flex-direction: row;
+    }
+  }
+  &__item {
+    padding: 20px 20px;
+    @include touch {
+      background-color: #fff;
+    }
+    @include desktop {
+      width: calc(100% / 3);
+      padding: 0 20px 58px;
+    }
+    & + & {
+      border-top: 2px solid $color_border;
+      @include desktop {
+        border-top: none;
+        border-left: 2px solid $color_primary;
+      }
+    }
+    &Title {
+      @include fz(16);
+      font-weight: bold;
+      line-height: 1.65;
+      @include desktop {
+        @include fz(24);
+        line-height: 1.5;
+      }
+    }
+    &Text {
+      margin-top: 10px;
+      @include fz(16);
+      line-height: 1.5;
+      @include mobile {
+        @include fz(12);
+      }
+    }
+  }
+}
+
+// =======================================================
+// おすすめ
+.c_recommend {
+  background-color: $color_bg;
+  @include desktop {
+    padding-top: 80px;
+  }
+}
+
