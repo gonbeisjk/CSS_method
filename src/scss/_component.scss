@@ -67,7 +67,7 @@
     background-color: #fff;
     opacity: 1;
     &.swiper-pagination-bullet-active {
-      background-color: #9b875a;
+      background-color: $color_secondary;
     }
   }
 }
@@ -92,7 +92,7 @@
         width: 60px;
         height: 2px;
         content: "";
-        background-color: #9b875a;
+        background-color: $color_secondary;
         transform: translateX(-50%);
       }
     }
@@ -289,7 +289,7 @@
   &__sub {
     @include fz(14);
     margin-top: 10px;
-    color: #9b875a;
+    color: $color_secondary;
     @include desktop {
       @include fz(18);
       margin-top: inherit;

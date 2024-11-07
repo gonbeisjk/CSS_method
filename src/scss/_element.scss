@@ -17,7 +17,7 @@
     @include ov_zoomimg;
     &:hover {
       .e_card__title {
-        color: #9b875a;
+        color: $color_secondary;
       }
     }
   }
@@ -58,7 +58,7 @@
   }
   &__price {
     line-height: 1;
-    color: #9b875a;
+    color: $color_secondary;
     text-align: right;
     @include fz(14);
     @include desktop {

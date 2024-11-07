@@ -226,7 +226,7 @@
       font-weight: bold;
 
       @include desktop {
-        color: #9b875a;
+        color: $color_secondary;
       }
     }
     &._cart {
@@ -236,7 +236,7 @@
       border-radius: 24px;
 
       @include desktop {
-        border-color: #9b875a;
+        border-color: $color_secondary;
         border-radius: 20px;
       }
       a {
@@ -252,7 +252,7 @@
         }
         &:hover {
           color: #fff;
-          background-color: #9b875a;
+          background-color: $color_secondary;
           transition: background-color 0.5s ease-in-out;
         }
       }
