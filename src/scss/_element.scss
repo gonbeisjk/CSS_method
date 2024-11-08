@@ -93,7 +93,7 @@ input {
       margin-left: 10px;
     }
 
-    // 色
+    // スタイル
     &._white {
       color: #000;
       background: #fff;
@@ -111,6 +111,12 @@ input {
         color: $color_primary;
         background: #fff;
       }
+    }
+    &._white-ol {
+      color: #fff;
+      background: transparent;
+      border: 2px solid #fff;
+      
     }
 
     

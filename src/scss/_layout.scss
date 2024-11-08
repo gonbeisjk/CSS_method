@@ -44,6 +44,7 @@
     height: 70px;
     padding: 0 20px;
     background-color: #fff;
+    width: 100%;
 
     @include desktop {
       height: 100px;
@@ -132,9 +133,6 @@
         }
       }
     }
-    // .header-gnav {
-    //   right: 0;
-    // }
   }
   //ハンバーガー ここまで
   
@@ -165,8 +163,13 @@
   opacity: 0;
   transition: opacity 0.3s linear;
   
+  
   @include mobile {
     pointer-events: none;
+    position: absolute;
+    width: 100%;
+    top: 70px;
+    left: 0;
   }
   
   @include touch {
@@ -230,30 +233,31 @@
       }
     }
     &._cart {
-      margin-left: 16px;
       overflow: hidden;
-      border: 2px solid #fff;
-      border-radius: 24px;
-
+      
       @include desktop {
-        border-color: $color_secondary;
-        border-radius: 20px;
+        margin-left: 16px;
       }
-      a {
+      
+      .e_btn {
         width: 250px;
         padding: 0;
         line-height: 48px;
         transition: background-color 0.2s ease-in-out;
         text-transform: uppercase;
-
+        
         @include desktop {
+          color: $color_secondary;
+          border-color: $color_secondary;
+          border-radius: 20px;
           width: 136px;
           line-height: 36px;
+          height: auto;
         }
         &:hover {
           color: #fff;
           background-color: $color_secondary;
-          transition: background-color 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;
         }
       }
     }
