@@ -236,9 +236,12 @@ body.is-openMenu .l_header__btn span::after {
 
 @media (max-width: 999px) {
   body.is-openMenu {
-    background-color: #a18f67;
     position: absolute;
     overflow: hidden;
+    width: 100%;
+  }
+  body.is-openMenu .l_header {
+    background-color: #a18f67;
   }
 }
 body.is-openMenu .l_header__inner {

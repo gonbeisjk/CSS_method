@@ -139,10 +139,13 @@
   // メニューOpen時
   @at-root body.is-openMenu {
     @include touch {
-      background-color: #a18f67;
       position: absolute;
       overflow: hidden;
-      // pointer-events: auto;
+      width: 100%;
+      
+      .l_header {
+        background-color: $color_bg_dark;
+      }
     }
     .l_header__inner {
       background-color: transparent;
@@ -186,7 +189,7 @@
       pointer-events: auto;
       opacity: 1;
       height: calc(100vh - 70px);
-      background-color: #a18f67;
+      background-color: $color_bg_dark;
 
       @include desktop {
         display: none;

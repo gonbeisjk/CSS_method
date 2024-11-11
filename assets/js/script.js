@@ -16,14 +16,7 @@
     }
   });
 
-  const galleryThumbs = new Swiper('#gallery-thumbs', {
-    slidesPerView: 'auto',
-    freeMode: true,
-    watchSlidesVisibility: true,
-    watchSlidesProgress: true
-  });
-
-  const detail = new Swiper('#detail-slide', {
+  const gallery = new Swiper('#detail-slide', {
     loop: true,
     effect: 'fade',
     fadeEffect: {
@@ -41,9 +34,18 @@
       swiper: galleryThumbs
     }
   });
+
+  const galleryThumbs = new Swiper('#gallery-thumbs', {
+    slidesPerView: 'auto',
+    freeMode: true,
+    watchSlidesVisibility: true,
+    watchSlidesProgress: true
+  });
+
+  
 }());
 
-  //ハンバーガーメニュー
+//ハンバーガーメニュー
 $(document).ready(function () {
   $("#header-btn").on("click",function(){
     $("body").toggleClass("is-openMenu");
